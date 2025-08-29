@@ -26,7 +26,7 @@ export const TodoList = ({
 
 			<TodoInput AddTask={AddTask} />
 
-			<ScrollArea>
+			<ScrollArea className='h-[400px]'>
 				<div>
 					{tasks.length === 0 ? (
 						<div>No tasks. Add first task!</div>
