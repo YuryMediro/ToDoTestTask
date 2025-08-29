@@ -1,5 +1,6 @@
 import type { Task } from '@/types/task'
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function useTodo() {
 	const [tasks, setTasks] = useState<Task[]>(() => {
@@ -11,9 +12,9 @@ export default function useTodo() {
 		localStorage.setItem('tasks', JSON.stringify(tasks))
 	}, [tasks])
 
-	const handleAddTask = (text: string) => {
+	const AddTask = (text: string) => {
 		const newTask: Task = {
-			id: Date.now(),
+			id: uuidv4(),
 			text,
 			completed: false,
 		}
@@ -21,11 +22,11 @@ export default function useTodo() {
 		setTasks(prev => [...prev, newTask])
 	}
 
-	const handleRemoveTask = (taskId: number) => {
+	const RemoveTask = (taskId: string) => {
 		setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId))
 	}
 
-	const handleCompleteTask = (taskId: number) => {
+	const CompleteTask = (taskId: string) => {
 		setTasks(prevTasks =>
 			prevTasks.map(task =>
 				task.id === taskId ? { ...task, completed: !task.completed } : task
@@ -33,15 +34,16 @@ export default function useTodo() {
 		)
 	}
 
-	const handleClearCompletedTasks = () => {
+	const ClearCompletedTasks = () => {
 		setTasks(prevTasks => prevTasks.filter(task => !task.completed))
 	}
 
 	return {
 		tasks,
-		handleAddTask,
-		handleRemoveTask,
-		handleCompleteTask,
-		handleClearCompletedTasks,
+		AddTask,
+		RemoveTask,
+		CompleteTask,
+		ClearCompletedTasks,
+		
 	}
 }
