@@ -9,7 +9,8 @@
 		"start": "vite",
 		"build": "tsc -b && vite build",
 		"lint": "eslint .",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"install-and-start": "npm install && npm run start"
 	},
 	"dependencies": {
 		"@radix-ui/react-checkbox": "^1.3.3",
