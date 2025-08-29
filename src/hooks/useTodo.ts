@@ -38,12 +38,20 @@ export default function useTodo() {
 		setTasks(prevTasks => prevTasks.filter(task => !task.completed))
 	}
 
+	const EditTask = (taskId: string, newText: string) => {
+		setTasks(prevTasks =>
+			prevTasks.map(task =>
+				task.id === taskId ? { ...task, text: newText } : task
+			)
+		)
+	}
+
 	return {
 		tasks,
 		AddTask,
 		RemoveTask,
 		CompleteTask,
 		ClearCompletedTasks,
-		
+		EditTask
 	}
 }

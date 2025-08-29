@@ -11,6 +11,7 @@ interface TodoListProps {
 	ClearCompletedTasks: () => void
 	CompleteTask: (id: string) => void
 	RemoveTask: (id: string) => void
+	EditTask: (id: string, newText: string) => void
 }
 
 export const TodoList = ({
@@ -18,6 +19,7 @@ export const TodoList = ({
 	ClearCompletedTasks,
 	CompleteTask,
 	RemoveTask,
+    EditTask,
 	tasks,
 }: TodoListProps) => {
 	const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all')
@@ -28,15 +30,15 @@ export const TodoList = ({
 		return true
 	})
 	return (
-		<div className='w-full max-w-2xl mx-auto p-6'>
+		<div className='w-full max-w-2xl mx-auto p-4'>
 			<h1 className='text-3xl font-bold text-center mb-8 text-gray-900'>
 				ToDo List
 			</h1>
 
 			<TodoInput AddTask={AddTask} />
 
-			<ScrollArea className='h-[400px]'>
-				<div>
+			<ScrollArea className='h-150 '>
+				<div className='space-y-4 pr-4 pl-4'>
 					{filteredTasks.length === 0 ? (
 						<div className='text-center text-gray-500 py-8'>
 							{tasks.length === 0
@@ -50,6 +52,7 @@ export const TodoList = ({
 								task={task}
 								CompleteTask={CompleteTask}
 								RemoveTask={RemoveTask}
+								EditTask={EditTask}
 							/>
 						))
 					)}
