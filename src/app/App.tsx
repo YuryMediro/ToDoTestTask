@@ -1,12 +1,11 @@
-import './App.css'
-import { TodoList } from './components/TodoList/TodoList'
-import useTodo from './hooks/useTodo'
+import { TodoList } from '../components/TodoList/TodoList'
+import useTodo from '../hooks/useTodo'
 
 function App() {
 	const { tasks, AddTask, ClearCompletedTasks, CompleteTask, RemoveTask,EditTask } =
 		useTodo()
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-6'>
+		<div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-4 md:py-6 lg:py-8'>
 			<TodoList
 				tasks={tasks}
 				AddTask={AddTask}

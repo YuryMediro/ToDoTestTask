@@ -28,15 +28,17 @@ export const TodoInput = ({ AddTask }: TodoInputProps) => {
 		setNewTaskText('')
 	}
 	return (
-		<div className='flex space-x-2 mb-6'>
+		<div className='flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6'>
 			<Input
 				placeholder='Add a new task...'
 				value={newTaskText}
 				onChange={e => setNewTaskText(e.target.value)}
 				onKeyDown={e => e.key === 'Enter' && handleAddTask()}
+				className='flex-1 text-sm sm:text-base'
 			/>
-			<Button className='px-4' onClick={handleAddTask}>
-				<Plus className='h-4 w-4' /> Add task
+			<Button className='px-3 sm:px-4 py-2 sm:py-2' onClick={handleAddTask}>
+				<Plus className='h-3 w-3 sm:h-4 sm:w-4  ' />
+				<span className='text-sm sm:text-base'> Add task</span>
 			</Button>
 		</div>
 	)
